@@ -1,0 +1,40 @@
+.navbar-nav {
+  flex-direction: row;
+  gap: 15px;
+}
+
+.color-error{
+  color:red;
+}
+
+.container{
+  width: 500px;
+}
+
+.App-width{
+  display: flex;
+  justify-content: center;
+}
+
+.btn-login{
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+}
+
+.btn-register{
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.btn-order{
+  display: flex;
+  margin-left: 15px;
+  justify-content: space-between;
+  margin-right: 15px;
+  margin-bottom: 15px;
+}
+
+
