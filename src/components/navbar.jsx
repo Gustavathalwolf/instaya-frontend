@@ -1,6 +1,18 @@
 import {NavLink} from "react-router-dom"
+import { useEffect, useState } from "react"
 
-const Navbar = () => {
+    const Navbar = ({ userProps }) => {
+    const [user, setUser] = useState(false)
+
+    useEffect(() => {
+        console.log(userProps)
+        setUser(userProps)
+    })
+
+    const logOut = () => {
+        localStorage.removeItem('user_id')
+        setUser(false)
+    }
     return (
        <nav className="navbar navbar-dark bg-dark">
             <div className="container-fluid">
@@ -13,15 +25,18 @@ const Navbar = () => {
 
                 <div id="navbarNav">
                     <ul className="navbar-nav">
-                        <li className="nav-item">
+                            {user ? '' :<li className="nav-item">
                             <NavLink className="nav-link" to="/login">Iniciar sesion</NavLink>
-                        </li>
-                        <li className="nav-item">
+                        </li>}
+                            {user ? '' :<li className="nav-item">
                             <NavLink className="nav-link" to="/register">Registrarse</NavLink>
-                        </li>
-                        <li className="nav-item">
+                        </li>}
+                             {user ? <li className="nav-item">
                             <NavLink className="nav-link" to="/orders-home">Lista de ordenes</NavLink>
-                        </li>
+                        </li> : ''}
+                        {user ? <li className="nav-item">
+                            <NavLink className="nav-link" to="/login" onClick={() => logOut()}>Desconectarse</NavLink>
+                        </li> : ''}
                     </ul>
                 </div>
             </div>

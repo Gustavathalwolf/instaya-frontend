@@ -1,44 +1,60 @@
 import {Link} from "react-router-dom"
+import axios from "axios"
+import { useEffect, useState } from "react"
+
+const Labels = [
+    'Codigo de seguimiento',
+    'Fecha de recogida',
+    'Ciudad de entrega',
+    'Direccion de entrega',
+    'Estado',
+    'Acción'
+]
 
 const OrdersHome = () => {
+    const [orders, setOrders] = useState(null)
+
+    useEffect(() => {
+        const userId = localStorage.getItem('user_id')
+        axios
+            .get("http://localhost:5000/orders?userId=" + userId)
+            .then((response) => {
+                console.log(response.data)
+                setOrders(response.data)
+            })
+
+    },[])
+
     return (
-        <div className="square square-lg bg-white border mt-5 shadow-sm p-3 mb-5 bg-white rounded">
+        <div className="square-lg bg-white border mt-5 shadow-sm p-3 mb-5 bg-white rounded">
           <table className="table">
             <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Codigo</th>
-                <th scope="col">Fecha</th>
-                <th scope="col">Ciudad de entrega</th>
-                <th scope="col">Direccion de entrega</th>
-                <th scope="col">Estado</th>
-              </tr>
+                 <tr>
+                  {Labels.map((labels,index) => {
+                  return (
+                  <th scope="col" key={index}>{labels}</th>
+                )
+              })}
+               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>CFC</td>
-                <td>11/11/2022</td>
-                <td>Santa Marta</td>
-                <td>Calle 123 # 45 -67</td>
-                <td>Cumplido</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>XGB</td>
-                <td>12/11/2022</td>
-                <td>Barranquilla</td>
-                <td>Calle 150A # 45 -67</td>
-                <td>Cancelado</td>
-              </tr>
+            {orders !== null ? orders.map((orders, index) => {
+            return (
+            <tbody key={index}>
+                <tr>
+                  <td>{orders._id}</td>
+                  <td>{orders.pickupDate}</td>
+                  <td>{orders.deliveryCity}</td>
+                  <td>{orders.deliveryAddress}</td>
+                  <td>{orders.status}</td>
+                  <td><Link to={'/orders/' + orders._id + '/update'}><input value="Editar orden" id="btn-edit" className="btn btn-success" type="submit"></input></Link></td>
+                </tr>
             </tbody>
+            ) }): ''}
           </table>
           <div className="btn-order">
             <Link to="/orders-register"><input value="Crear orden" id="btn-create" className="btn btn-primary" type="submit"></input></Link>
-            <Link to="/orders-update"><input value="Editar orden" id="btn-edit" className="btn btn-primary" type="submit"></input></Link>
           </div>
         </div>
-
     )
 }
 
