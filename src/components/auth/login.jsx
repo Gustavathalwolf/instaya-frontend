@@ -17,7 +17,7 @@ const Login = () => {
     }
     setIsSuccess(true)
     axios
-            .post("http://localhost:5000/users/login", userObject)
+            .post("https://instaya-backend-production-da29.up.railway.app/users/login", userObject)
             .then(response => {
                 if (response.data.length != 0) {
                     localStorage.setItem('user_id', response.data[0]._id)

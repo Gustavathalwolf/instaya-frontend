@@ -34,13 +34,13 @@ const orderObject = {
 }
     setIsSuccess(true)
     axios
-    .put("http://localhost:5000/orders/edit/" + id, orderObject)
+    .put("https://instaya-backend-production-da29.up.railway.app/orders/edit/" + id, orderObject)
     .then(response => console.log(response.data))
 }
 
 useEffect(() => {
     axios
-        .get("http://localhost:5000/orders/" + id)
+        .get("https://instaya-backend-production-da29.up.railway.app/orders/" + id)
         .then(response => {
             console.log(response.data)
             setOrder(response.data)

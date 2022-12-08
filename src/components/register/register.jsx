@@ -24,7 +24,7 @@ const Register = () => {
     setIsSuccess(true)
 
     axios
-            .post("http://localhost:5000/users/create", userObject)
+            .post("https://instaya-backend-production-da29.up.railway.app/users/create", userObject)
             .then(response => {
                 if (response.status === '200') {
                     alert('Success!')

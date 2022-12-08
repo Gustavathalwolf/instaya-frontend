@@ -17,7 +17,7 @@ const OrdersHome = () => {
     useEffect(() => {
         const userId = localStorage.getItem('user_id')
         axios
-            .get("http://localhost:5000/orders?userId=" + userId)
+            .get("https://instaya-backend-production-da29.up.railway.app/orders?userId=" + userId)
             .then((response) => {
                 console.log(response.data)
                 setOrders(response.data)

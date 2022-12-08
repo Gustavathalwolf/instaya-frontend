@@ -29,7 +29,7 @@ const orderObject = {
 }
     setIsSuccess(true)
     axios
-        .post("http://localhost:5000/orders/create", orderObject)
+        .post("https://instaya-backend-production-da29.up.railway.app/orders/create", orderObject)
         .then(response => {
             if (response.status === '200') {
                 alert('Success!')
