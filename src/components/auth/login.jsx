@@ -15,11 +15,11 @@ const Login = () => {
         userName: data.userName,
         password: passwordhash
     }
-    setIsSuccess(true)
     axios
             .post("https://instaya-backend-production-da29.up.railway.app/users/login", userObject)
             .then(response => {
                 if (response.data.length != 0) {
+                    setIsSuccess(true)
                     localStorage.setItem('user_id', response.data[0]._id)
                     navigate("/orders-home")
                 } else {

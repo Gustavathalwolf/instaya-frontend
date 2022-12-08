@@ -45,7 +45,6 @@ useEffect(()=>{
 
     if(isSuccess===true){
         showAlertSuccess()
-        navigate("/orders-home")
     } 
 
 }, [isSuccess])
